@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\ItemController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -24,5 +25,11 @@ Route::controller(ItemController::class)->group(function(){
     Route::post('/item','store');
     Route::get('/item/{id}','show');
     Route::put('/item/{id}','update');
-    Route::delete('item/{id}','destroy');   
+    Route::delete('item/{id}','destroy');
+});
+
+Route::prefix('auth')->group(function(){
+    Route::post('login',[AuthController::class,'login']);
+    Route::post('register',[AuthController::class,'register']);
+
 });
